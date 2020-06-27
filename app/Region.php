@@ -97,13 +97,6 @@ class Region
      */
     public function canPlaceBoss(Boss $boss, string $level = 'top'): bool
     {
-        if (
-            $this->name != "Ice Palace" && $this->world->config('mode.weapons') == 'swordless'
-            && $boss->getName() == 'Kholdstare'
-        ) {
-            return false;
-        }
-
         return !in_array($boss->getName(), [
             "Agahnim",
             "Agahnim2",

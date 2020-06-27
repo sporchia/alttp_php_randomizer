@@ -370,15 +370,7 @@ class Randomizer implements RandomizerContract
             ['Ganons Tower', 'bottom'],
         ];
 
-        if ($world->config('mode.weapons') == 'swordless') {
-            array_splice($boss_locations, 8, 1); // remove Ice Palace
-            $world->getRegion('Ice Palace')->setBoss(Boss::get("Kholdstare", $world));
-        }
-
         $placeable_bosses = Boss::all($world)->filter(function ($boss) use ($world) {
-            if ($world->config('mode.weapons') == 'swordless' && $boss->getName() == "Kholdstare") {
-                return false;
-            }
             return !in_array($boss->getName(), [
                 "Agahnim",
                 "Agahnim2",

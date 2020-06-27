@@ -106,10 +106,11 @@ class Boss
             }),
             new static("Kholdstare", "Kholdstare", function ($locations, $items) use ($world) {
                 return ($world->config('itemPlacement') !== 'basic' || $items->hasSword(2) || ($items->canExtendMagic(3) && $items->has('FireRod'))
-                    || ($items->has('Bombos') && ($world->config('mode.weapons') === 'swordless' || $items->hasSword()) && $items->canExtendMagic(2) && $items->has('FireRod')))
-                    && $items->canMeltThings($world) && ($items->has('Hammer') || $items->hasSword()
+                    || ($items->has('Bombos') && (($world->config('mode.weapons') === 'swordless' && $world->config('enemizer.bossShuffle') === 'none') || $items->hasSword()) && $items->canExtendMagic(2) && $items->has('FireRod')))
+                    && ($items->has('FireRod') || ($items->has('Bombos') && (($world->config('mode.weapons') === 'swordless' && $world->config('enemizer.bossShuffle') === 'none') || $items->hasSword())))
+                    && ($items->has('Hammer') || $items->hasSword()
                         || ($items->canExtendMagic(3) && $items->has('FireRod'))
-                        || ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos') && $world->config('mode.weapons') === 'swordless'));
+                        || ($items->canExtendMagic(2) && $items->has('FireRod') && $items->has('Bombos') && ($world->config('mode.weapons') === 'swordless' && $world->config('enemizer.bossShuffle') === 'none')));
             }),
             new static("Vitreous", "Vitreous", function ($locations, $items) use ($world) {
                 return ($world->config('itemPlacement') !== 'basic' || $items->hasSword(2) || $items->canShootArrows($world))
