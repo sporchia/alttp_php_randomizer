@@ -198,6 +198,7 @@ return [
         'spoiler_race' => 'Generate Normal ROM',
         'casual' => 'Generate ROM',
         'back' => 'Change Settings',
+        'forward' => 'View Generated Game',
         'regenerate' => 'Generate Again',
         'regenerate_tooltip' => 'Generate new game with same settings',
         'generating' => 'Generating...',

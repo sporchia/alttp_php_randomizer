@@ -25,7 +25,7 @@
       v-if="rom.weapons"
     >{{ $t('rom.info.weapons') }}: {{ $t(`randomizer.weapons.options.${rom.weapons}`) }}</div>
     <div v-if="rom.goal">{{ $t('rom.info.goal') }}: {{ $t(`randomizer.goal.options.${rom.goal}`) }}</div>
-    <div v-if="!noLink && rom.hash">
+    <div v-if="rom.hash">
       {{ $t('rom.info.permalink') }}:
       <a :href="permalink">{{ permalink }}</a>
     </div>
@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  props: ["rom", "noLink"],
+  props: ["rom"],
   computed: {
     permalink: vm => {
       return (

@@ -197,6 +197,7 @@ return [
         'spoiler_race' => 'Generar ROM para carreras (con spoilers)',
         'casual' => 'Generar ROM',
         'back' => 'Cambiar ajustes',
+        'forward' => 'Ver juego generado',
         'regenerate' => 'Generar otra vez',
         'regenerate_tooltip' => 'Generar otra partida con las mismas opciones',
         'generating' => 'Generando...',

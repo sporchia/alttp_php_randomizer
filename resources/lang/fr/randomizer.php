@@ -197,6 +197,7 @@ return [
         'spoiler_race' => 'Générer une ROM avec Spoiler',
         'casual' => 'Générer une ROM',
         'back' => 'Changer les Paramètres',
+        'forward' => 'Voir le jeu généré',
         'regenerate' => 'Générer à nouveau',
         'regenerate_tooltip' => 'Générer à nouveau avec les mêmes paramètres',
         'generating' => 'Génération...',

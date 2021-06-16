@@ -9,9 +9,19 @@
       <span class="message">{{ this.error }}</span>
     </div>
     <rom-loader v-if="!romLoaded" @update="updateRom" @error="onError"></rom-loader>
-    <div v-if="romLoaded && !gameLoaded && !generating" class="card border-success my-1">
+    <div v-if="romLoaded && !gameLoaded && !generating" class="card border-success">
       <div class="card-header bg-success card-heading-btn">
-        <h3 class="card-title text-white">{{ $t('randomizer.title') }}</h3>
+        <h3 class="card-title text-white float-left">{{ $t('randomizer.title') }}</h3>
+        <div class="btn-toolbar float-right" v-if="gameGenerated">
+          <a
+            class="btn btn-light text-dark border-secondary"
+            role="button"
+            @click="gameLoaded = true"
+          >
+            {{ $t('randomizer.generate.forward') }}
+            <img class="icon" src="/i/svg/arrow-right.svg" alt />
+          </a>
+        </div>
       </div>
       <div class="card-body">
         <div class="card border-info my-1">
@@ -278,7 +288,7 @@
 
     <div
       id="seed-details"
-      class="card border-info mt-3"
+      class="card border-success"
       v-if="gameLoaded && romLoaded && !generating"
     >
       <div class="card-header bg-success text-white card-heading-btn">
@@ -305,12 +315,12 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md my-1">
+          <div class="col-md mb-3">
             <vt-rom-info :rom="rom"></vt-rom-info>
           </div>
-          <div class="col-md my-1">
+          <div class="col-md mb-3">
             <div class="row">
-              <div class="col-md-6 my-1">
+              <div class="col-md-6 mb-3">
                 <div class="btn-group btn-flex" role="group" v-if="this.rom">
                   <button
                     class="btn btn-light border-secondary text-center"
@@ -318,7 +328,7 @@
                   >{{ $t('randomizer.details.save_spoiler') }}</button>
                 </div>
               </div>
-              <div class="col-md-6 my-1">
+              <div class="col-md-6 mb-3">
                 <div class="btn-group btn-flex" role="group" v-if="this.rom">
                   <button
                     class="btn btn-success text-center"
@@ -365,6 +375,7 @@ export default {
       romLoaded: false,
       current_rom_hash: "",
       gameLoaded: false,
+      gameGenerated: false,
       show_spoiler: false,
       tournament: false,
       disableSaveRomButton: false,
@@ -503,6 +514,7 @@ export default {
                     this.rom.allowQuickSwap = true;
                   }
                   this.gameLoaded = true;
+                  this.gameGenerated = true;
                   EventBus.$emit("gameLoaded", this.rom);
                   resolve({ rom: this.rom, patch: response.data.patch });
                 }.bind(this)
@@ -615,9 +627,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.card-body {
-  padding: 0.5rem;
-}
-</style>
